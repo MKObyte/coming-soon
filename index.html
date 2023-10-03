@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+     <title>The Coming soon Website Template | Home :: w3layouts</title>
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href='http://fonts.googleapis.com/css?family=Petit+Formal+Script' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Alegreya+Sans:300,400' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+	<div class="content">
+			<div class="wrap">
+				<div class="content-grid">
+			<p><img src="images/top.png" title=""></p>
+				</div>
+				<div class="grid">
+		<p><img src="images/coming.png" title=""></p>
+		<h3>We are Still Working on it.</h3>
+		
+		<form action="subscribe.php" method="post">
+			<input type="text" size="30" value="Your Email and Get Notified..." onblur="if (this.value=='') this.value = 'Your Email and Get Notified...'" onfocus="if (this.value=='Your Email and Get Notified...') this.value = ''" name="email" id="email">
+			<button type="submit" class="btn span btn-4 btn-4a icon-arrow-right"><span></span>Subscribe</button>
+		</form>
+		<div id="response"></div>
+								<div class="clear"></div>
+								</div>
+		<div class="clear"></div>
+		<div class="footer">
+			<p class="a"><a href="#"><img src="images/facebook.png" title=""></a><a href="#"><img src="images\twitter.png" title=""></a></p>
+		<p>Copyright 2013&nbspTemplate by <a href="http://w3layouts.com"> w3layouts.com</a> </p>
+		</div>
+		<div class="clear"></div>
+		</div>
+		</div>
+		<div class="clear"></div>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				document.querySelector("form").addEventListener("submit", function (e) {
+					e.preventDefault();
+			
+					// Get the email input value
+					var email = document.querySelector("#email").value;
+			
+					// Send a POST request to subscribe.php
+					fetch("subscribe.php", {
+						method: "POST",
+						body: new URLSearchParams({ email: email }),
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded",
+						},
+					})
+					.then(function (response) {
+						return response.json();
+					})
+					.then(function (data) {
+						alert(data.message);
+						if (data.message === "Email address successfully added to the notification list!") {
+							// Clear the email input after successful submission
+							document.querySelector("#email").value = "";
+						}
+					})
+					.catch(function (error) {
+						alert("An error occurred: " + error);
+					});
+				});
+			});
+			</script>
+</body>
+</html>
