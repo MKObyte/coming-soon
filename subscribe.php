@@ -10,7 +10,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
-    // Save the email address to a text file (for demo purposes)
     $file = "subscribers.txt";
     $data = $email . PHP_EOL;
     file_put_contents($file, $data, FILE_APPEND | LOCK_EX);
